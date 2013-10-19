@@ -1,0 +1,115 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+body {
+	font-size:12px;
+	font-family:"微软雅黑", "宋体";
+	background-color: #E0D3C9;
+}
+h2 {
+	color:#FFFFFF;
+	font-size:20px;
+}
+.wrap {
+	width:1350px;
+	margin:0 auto;
+
+}
+.header {
+	width:100%;
+	
+	text-align:center
+}
+.main {
+	width:990px;
+	background-color:#f3f3d6;
+	margin:0 auto;
+	padding:20px 0 0 10px;
+}
+.info div {
+	background-color:#c61515;
+	height:200px;
+	width:160px;
+	background-repeat:no-repeat;
+	background-position:bottom;
+}
+.info div h2 {
+	padding:10px 0 0 10px;
+	line-height:1.3em;
+}
+.info div.bginfo {
+	width:635px;
+	font-size:14px;
+	color:#FFFFFF;
+}
+.info div.bginfo p {
+	line-height:1.3em;
+	padding:0 2px;
+	font-size: 16px;
+}
+
+.candidates h2{ background-color:#edad5b; color:#7a0606; padding: 5px 3px; margin-right:10px; font-weight:bold }
+.candidates li {
+	float:left;
+	width:217px;
+	height:130px;
+	background-color:#edad5b;
+	padding:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+}
+
+.candidates li.selected{
+	background-color: #62c462
+}
+.candidates li a {
+
+	display: inline-block;
+float: left;
+margin-left: 10px;
+}
+.candidates li h3 {
+	float: left;
+	width: 85px;
+	padding: 10px;
+	font-size: 16px;
+}
+.candidates li p.position {
+	float: left;
+	width: 100px;
+	padding-left: 10px;
+	font-size: 14px;
+	height: 60px;
+overflow-y: auto;
+}
+
+.candidates li .detail h2{ margin-bottom: 5px; margin-right: 0}
+.candidates li .detail img{margin: 0 auto;
+display: block; }
+.candidates li .detail{
+
+	font-size: 16px;
+}
+.candidates li .detail b{
+	text-indent:2em;
+	line-height:2em;
+display:block;
+}
+.candidates li .detail p{
+	text-indent:2em;
+	line-height:1.7em;
+}
+.candidates li .detail p.recommend{
+	text-align:right;
+}
+
+.vote{ text-align: center; padding: 10px ;}
+.vote a{font-size: 14px;}
+#login-box h2{color: black; padding: 5px;}
+#result-box h2{color: black;}
+#result-box li,#result-box p{ padding: 3px 10px;}
+#result-box li span{font-size: 14px;}
+#result-box li span{ width: 100px; display: inline-block;}
+.footer{ text-align:center; }

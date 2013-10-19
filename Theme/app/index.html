@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最美校友</title>
+<?php
+        Template::importCommonCSS('reset,common');
+        Template::importCSS('style,../modal/reveal');
+        Template::importCommonJS('jquery');
+        Template::importJS('../modal/reveal');
+        ?>
+</head>
+<body>
+<div class="wrap">
+  <div class="header"><img src="<?php Template::importIMG('banner.png');?>"  /></div>
+  <div class="main">
+    <div class="info mb10 clearfix">
+      <div class="fl mr10" style="background-image:url(<?php Template::importIMG('avatar.png');?>)">
+       
+          <a href="#" data-animation="none"  data-reveal-id="hxmd-box" style="width:100%; height:100%; display:block;text-decoration:none">
+ <h2 >浙江工业大学<br />
+          “最美校友”<br />
+          候选名单公示</h2>
+          </a>
+      </div>
+      <div onclick="window.location = 'http://e.weibo.com/u/2098539747'" class="fl mr10" style="cursor: pointer;background-image:url(<?php Template::importIMG('weibo_logo.png');?>)">
+        <h2>参与微博 互动</h2>
+
+      </div>
+      <div class="bginfo fl">
+        <h2>评选说明： </h2>
+        <p> 　　经校友个人自荐、联名推荐、各学院及校友会推荐、评审委员会审核，共产生20名候选人。为增强评选工作的科学性和透明度，“最美 校友”评审委员会现将候选人名单（按姓氏 笔划为序）予以公示，广泛征求社会各界意见，同时，通过浙江工业大学60周年校庆微博进行互动，网络投票情况作为评选参考。</p> <br>
+        <p> 　　保证评选的公平公正，每张选票 （每次投票）评选的候选人不得少于8人、不得多于10人。9月24日-9月26日为测试时间，9月26日0点清零所有投票，评选工作正式开始。</p>
+      </div>
+    </div>
+    <div id="candidates" class="candidates clearfix">
+      <h2 class="mb10">候选人名单（按姓氏笔划排序）</h2>
+      <ul>
+        <?php foreach ($candidates as $c) {
+         //break;
+          ?>
+        <li> 
+          <a href="#" data-reveal-id="detail-box-id<?php echo $c['id']; ?>" data-animation="none" >
+            <img width="93" height="129" src="<?php Template::importIMG('datas/'.$c['avatar']) ?>"  />
+          </a>
+          <h3><?php echo $c['display_order']; ?>.<?php echo $c['name']; ?></h3>
+
+          <p class="position"> <?php echo $c['position']; ?></p>
+          <input type="checkbox" name="candidates[]" value="<?php echo $c['id']; ?>"  /> <span>票数：<?php  echo $c['count'] ;?></span>
+
+        <div id="detail-box-id<?php echo $c['id']; ?>" class="reveal-modal"> 
+            <h2 style="margin-right:0;margin-bottom:10px;text-align:center;"><?php echo $c['display_order'],'.',$c['name'],':',str_replace('<br />','',$c['position']);?></h2>
+             <div class="detail"> 
+              <?php if(!empty($c['photo'])){ ?>
+              <img  width="300" height="300" src="<?php Template::importIMG('photos/'.$c['photo']) ?>"> 
+              <?php } ?>
+              <?php  echo $c['description'] ;?>
+             </div>
+            <a class="close-reveal-modal">&#215;</a>
+        </div>
+
+        </li>
+        <?php  } ?>
+   
+      </ul>
+    </div>
+    <div class="vote">
+     
+        <label>验证码：</label><img title="验证码" id="verify_code" src="verify_code_cn.php" style="vertical-align:top"><input type="text" name="code" id="verify_code_input" /> <input type="button" value="提交投票" name="vote" id="vote"> 目前已经选择了<b id="count">0</b> 位 <br /><br />
+   
+        <a href="#" data-reveal-id="result-box" data-animation="none">查看结果</a> 
+
+       
+        
+    
+    </div>
+  </div>
+  <div class="footer mt20"> 版权所有:浙江工业大学 最美校友投票 </div>
+</div>
+
+
+
+        <div id="result-box" class="reveal-modal">
+    
+            <h2 class="pl10">投票结果</h2>
+
+        <div>
+            <ul>
+          <?php foreach ($candidates as $c) {?>
+            <li>
+            <span class="name"><?php  echo $c['display_order'],'.',$c['name'] ;?></span>
+            <span class="count"><?php  echo $c['count'] ;?></span>
+            <span class="percent"><?php if($sum != 0) echo round($c['count']/$sum*100,2); else echo 0 ;?>%</span>
+          </li>
+          <?php } ?>
+          </ul>
+          <p>总票数：<span class="sum"><?php echo $sum;?></span></p>
+        </div>
+
+            <a class="close-reveal-modal">&#215;</a>
+        </div>
+
+        <div id="hxmd-box" class="reveal-modal"> 
+            <!-- <h2 style="margin-right:0;margin-bottom:10px;text-align:center;">　　　浙江工业大学“最美校友”候选人名单公示</h2> -->
+             <div class="detail"> 
+             <p style="text-indent:30.0000pt;margin-bottom:0pt;margin-top:0pt;text-align:center"><span style="color:rgb(85,85,85);font-weight:bold;font-size:16.0000pt;font-family:'黑体'">浙江工业大学“最美校友”候选人名单公示</span><span style="color:rgb(85,85,85);font-weight:bold;font-size:16.0000pt;font-family:'黑体'"></span></p>
+<p style="text-indent:24.0000pt;margin-bottom:0pt;margin-top:0pt"><span style="color:rgb(51,51,51);font-size:12.0000pt;font-family:'宋体'">&nbsp;</span></p>
+<p style="text-indent:28.0000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-size:14.0000pt;font-family:'宋体'">2013年10月，学校将迎来六十周年华诞。为了进一步总结和宣传学校改革发展历程和人才培养成果，弘扬优秀校友的崇高精神和感人事迹，凝聚广大师生员工力量，激励全校师生拼搏进取、开拓创新、奋发有为，为学校建设区域特色鲜明的综合性研究型大学作出新贡献。学校决定在六十周年校庆之际，评选和表彰</span><span style="font-size:14.0000pt;font-family:'宋体'">一批</span><span style="font-size:14.0000pt;font-family:'宋体'">“最美校友”。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:28.0000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-size:14.0000pt;font-family:'宋体'">浙江工业大学“最美校友</span><span style="font-size:14.0000pt;font-family:'宋体'">”</span><span style="font-size:14.0000pt;font-family:'宋体'">评选活动自今年4月启动以来，得到了学院、校友会、校友的广泛参与和大力支持，共收到23份材料。经浙江工业大学“最美校友”评审委员会投票产生“最美校友”候选人20名。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:28.0000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-size:14.0000pt;font-family:'宋体'">现将浙江工业大学“最美校友”正式候选人予以公示。公示期3天。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:30.0000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14pt;font-family:宋体">一、公示时间：</span><span style="color:rgb(85,85,85);font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:30.0000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-size:14pt;font-family:宋体">2013年9月24日—9月26日</span><span style="color:rgb(85,85,85);font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:30.0000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14pt;font-family:宋体">二、浙江工业大学“最美校友”正式候选人情况（以姓氏笔画为序排列）</span><span style="font-weight:bold;font-size:14pt;font-family:宋体"></span></p>
+<p style="text-indent:34.3000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">1、工贸</span><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">85</span><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">，</span><span style="font-size:14.0000pt;font-family:'宋体'">团体，2003年10月成立工贸85基金会。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:35.0000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">2、王广宪，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，</span><span style="font-size:14.0000pt;font-family:'宋体'">&nbsp;</span><span style="font-size:14.0000pt;font-family:'宋体'">1962年</span><span style="font-size:14.0000pt;font-family:'宋体'">化工机械专业</span><span style="font-size:14.0000pt;font-family:'宋体'">毕业，现任十一届全国政协人口资源环境委员会副主任，曾任</span><span style="font-size:14.0000pt;font-family:'宋体'">中共第十四、十五届中央候补委员。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:21.0000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">  </span><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">3、王伟，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;1973年无机化工专业毕业，现任浙江新安化工集团股份有限公司董事长。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.7200pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">4、王辉，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;1990年电子仪器及测量专业毕业，现任浙江银江科技集团总裁。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.3000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">5、王利平，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;2003年英语专业毕业，现任武警广东总队开平边检站政治处副主任，少校警衔。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">6、卢诚，男，</span><span style="font-size:14.0000pt;font-family:'宋体'">中澳MBA&nbsp;99(2)毕业，</span><span style="font-size:14.0000pt;font-family:'宋体'">现任</span><span style="font-size:14.0000pt;font-family:'宋体'">远洲集团浙江远洲集团有限公司</span><span style="font-size:14.0000pt;font-family:'宋体'">董事长。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">7、刘玲英，</span><span style="font-size:14.0000pt;font-family:'宋体'">女，&nbsp;1997年小企业模块班毕业，现任浙江省丽水市农行系统团委副书记、女工委主任。</span><span style="color:rgb(51,51,51);font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">8、“花儿团队”</span><span style="font-size:14.0000pt;font-family:'宋体'">，团队，组建于2010年5月。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.3000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">9、吴伟明，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;1979年工业分析专业毕业，曾就职于巨化集团电化厂。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.3000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">10、陈国兴，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;1986年工民建专业毕业，南京工业大学学术委员会委员、学位委员会委员，交通学院院长。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">11、杨济源，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，化材学院化学工程0701班学生，先后被授予“全国见义勇为优秀大学生”、“全国优秀共青团员”、“2009年度中国正义人物特别奖”。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.3000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">12、张倩，</span><span style="font-size:14.0000pt;font-family:'宋体'">女，&nbsp;2005年食品科学与工程/国贸专业毕业，现担任鹏欣集团有限公司人力资源主管。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">13、何铨之，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;1977年化工机械专业毕业，曾担任浙江工业大学杭州校友会会长。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">14、陈得俊，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;2011年之江学院环境艺术设计专业毕业，</span><span style="font-size:14.0000pt;font-family:'宋体'">现为杭州点道建筑装饰设计工程公司董事长</span><span style="font-size:14.0000pt;font-family:'宋体'">。</span><span style="font-size:14.0000pt;font-family:'宋体'">&nbsp;</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.3000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">15、周光耀，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;1954年</span><span style="font-size:14.0000pt;font-family:'宋体'">无机物工艺专业</span><span style="font-size:14.0000pt;font-family:'宋体'">毕业，中国工程院院士。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.3000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">16、郑革，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;2002年计算机专业毕业，现任永固集团股份有限公司执行总裁兼党总支书记。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.3000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">17、郑溢祥，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;2004年化工专业精细化工模块毕业，现任广州军区“塔山守备英雄团”工兵连指导员。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">18、洪毅，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;2010年计算机专业研究生毕业，现任杭州市下城区星火园区党委委员兼园区网络科技企业联合党支部书记。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">19、姜嘉锵，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;1954年</span><span style="font-size:14.0000pt;font-family:'宋体'">无机工艺专业</span><span style="font-size:14.0000pt;font-family:'宋体'">毕业</span><span style="font-size:14.0000pt;font-family:'宋体'">，现为国家一级演员、任职于中央民族乐团。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14.0000pt;font-family:'宋体'">20、董国民，</span><span style="font-size:14.0000pt;font-family:'宋体'">男，&nbsp;1989年机械制造专业毕业，现任杭州中商控股集团董事长。</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-weight:bold;font-size:14pt;font-family:宋体">三、联系人及电话：</span><span style="color:rgb(85,85,85);font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-size:14.0000pt;font-family:'宋体'">公示期间如有异议，请书面或电话向评选活动组委会办公室反映.</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:34.8600pt;margin-bottom:0pt;margin-top:0pt"><span style="font-size:14.0000pt;font-family:'宋体'">联系人：施老师，电话：0571-88320360；</span><span style="font-size:14.0000pt;font-family:'宋体'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="text-indent:30.0000pt;margin-bottom:0pt;margin-top:0pt"><span style="font-size:14pt;font-family:宋体">&nbsp;　　　　&nbsp;　浙江工业大学“最美校友”评选活动组委会</span><span style="color:rgb(85,85,85);font-size:14.0000pt;font-family:'宋体'"></span></p>
+<p style="margin-bottom:0pt;margin-top:0pt"><span style="font-size:14pt;font-family:微软雅黑">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font face="微软雅黑">二○一三年九月二十二日</font></span></p>
+             </div>
+            <a class="close-reveal-modal">&#215;</a>
+        </div>
+
+</body>
+</html>
+<script type="text/javascript">
+function refreshself() 
+{
+    var str = window.location.toString();
+    if (str.lastIndexOf('#') != -1) str = str.substring(0, str.length-1);
+    window.location=str;
+}
+$("#vote").click(function(){
+    var $candidates = $("#candidates input:checked");
+    var length = $candidates.length;
+    if(length >=8 && length <=10)
+    {
+      $.post('<?php url('index','vote')?>',$("#candidates input:checked").serialize()+'&code='+$('#verify_code_input').val(),function(d){
+        alert(d.info);
+        if(d.state === 'success') refreshself();
+      },'json')
+      return false;
+    }
+    else
+    {
+      alert('每张选票（每次投票）评选的候选人不得少于8人、不得多于10人');
+    }
+
+})
+$("#candidates :checkbox").click(function(){
+  $("#count").text($("#candidates :checkbox:checked").length);
+  $(this).closest('li').toggleClass('selected');
+})
+</script>
+<script type="text/javascript">
+$("#verify_code").click(function(){
+  var d = new Date()
+  var hour = d.getHours(); 
+  var minute = d.getMinutes();
+  var sec = d.getSeconds();
+    $(this).attr("src","verify_code_cn.php?"+hour+minute+sec);
+});
+</script>
